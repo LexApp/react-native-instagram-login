@@ -73,8 +73,8 @@ export default class Instagram extends Component {
           let headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
           let http = axios.create({ baseURL: 'https://api.instagram.com/oauth/access_token',  headers: headers  })
           let form = new FormData();
-          form.append( 'app_id', appId );
-          form.append( 'app_secret', appSecret );
+          form.append('client_id', appId);
+          form.append('client_secret', appSecret);
           form.append( 'grant_type', 'authorization_code' );
           form.append( 'redirect_uri', redirectUrl );
           form.append( 'code', code );
@@ -131,7 +131,7 @@ export default class Instagram extends Component {
     const { appId, appSecret, redirectUrl, scopes, responseType } = this.props
     const { key } = this.state
 
-    let ig_uri = `https://api.instagram.com/oauth/authorize/?app_id=${appId}&app_secret=${appSecret}&redirect_uri=${redirectUrl}&response_type=${responseType}&scope=${scopes.join(',')}`
+    let ig_uri = `https://api.instagram.com/oauth/authorize/?client_id=${appId}&redirect_uri=${redirectUrl}&response_type=${responseType}&scope=${scopes.join(',')}`;
 
     return (
       <WebView
